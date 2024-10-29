@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Conference;
+use App\Models\Talk;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +18,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Conference::factory()->count(10)->create();
+        Talk::factory()->count(20)->create();
     }
 }

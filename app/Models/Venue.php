@@ -15,6 +15,11 @@ class Venue extends Model
 
     protected $casts = [
         'id' => 'integer',
+        'name' => 'string',
+        'city' => 'string',
+        'country' => 'string',
+        'postal_code' => 'string',
+        'region' => RegionEnum::class
     ];
 
     public function conferences(): HasMany

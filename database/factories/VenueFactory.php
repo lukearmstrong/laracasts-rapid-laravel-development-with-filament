@@ -22,7 +22,7 @@ class VenueFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->company(),
             'city' => $this->faker->city(),
             'country' => $this->faker->country(),
             'postal_code' => $this->faker->postcode(),

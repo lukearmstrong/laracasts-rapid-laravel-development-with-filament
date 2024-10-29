@@ -37,6 +37,8 @@ class VenueResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('postal_code')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('region')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
