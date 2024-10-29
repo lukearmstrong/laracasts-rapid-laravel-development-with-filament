@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\Region;
+use App\Enums\RegionEnum;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,8 +38,8 @@ class Venue extends Model
                 ->required()
                 ->maxLength(255),
             Select::make('region')
-                ->enum(Region::class)
-                ->options(Region::class),
+                ->enum(RegionEnum::class)
+                ->options(RegionEnum::class),
         ];
     }
 }

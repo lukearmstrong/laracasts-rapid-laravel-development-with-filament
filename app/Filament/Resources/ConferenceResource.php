@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\Region;
+use App\Enums\RegionEnum;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Filament\Resources\ConferenceResource\RelationManagers;
 use App\Models\Conference;
@@ -45,8 +45,8 @@ class ConferenceResource extends Resource
                 Forms\Components\Select::make('region')
                     ->live()
                     ->required()
-                    ->enum(Region::class)
-                    ->options(Region::class),
+                    ->enum(RegionEnum::class)
+                    ->options(RegionEnum::class),
                 Forms\Components\Select::make('venue_id')
                     ->searchable()
                     ->preload()
