@@ -43,7 +43,6 @@ class Venue extends Model
                 ->required()
                 ->maxLength(255),
             Select::make('region')
-                ->enum(RegionEnum::class)
                 ->options(RegionEnum::class),
         ];
     }

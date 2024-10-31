@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\RegionEnum;
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,8 +15,12 @@ class Conference extends Model
 
     protected $casts = [
         'id' => 'integer',
+        'name' => 'string',
+        'description' => 'string',
         'start_date' => 'datetime',
         'end_date' => 'datetime',
+        'status' => StatusEnum::class,
+        'is_published' => 'boolean',
         'region' => RegionEnum::class,
         'venue_id' => 'integer',
     ];

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Enums\RegionEnum;
+use App\Enums\StatusEnum;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Filament\Resources\ConferenceResource\RelationManagers;
 use App\Models\Conference;
@@ -37,15 +38,14 @@ class ConferenceResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('status')
                     ->required()
-                    ->options([
-                        'draft' => 'Draft',
-                        'reviewing' => 'Reviewing',
-                        'published' => 'Published',
-                    ]),
+                    ->options(StatusEnum::class),
+                Forms\Components\Toggle::make('is_published')
+                    ->onIcon('heroicon-m-eye')
+                    ->offIcon('heroicon-m-eye-slash')
+                    ->default(true),
                 Forms\Components\Select::make('region')
                     ->live()
                     ->required()
-                    ->enum(RegionEnum::class)
                     ->options(RegionEnum::class),
                 Forms\Components\Select::make('venue_id')
                     ->searchable()
@@ -63,19 +63,28 @@ class ConferenceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
-                    ->dateTime()
+                    ->dateTime('F j, Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_date')
-                    ->dateTime()
+                    ->dateTime('F j, Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('is_published')
+                    ->icon(fn(int $state): string => match ($state) {
+                        0 => 'heroicon-m-eye-slash',
+                        1 => 'heroicon-m-eye',
+                    })
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('region')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('venue.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
